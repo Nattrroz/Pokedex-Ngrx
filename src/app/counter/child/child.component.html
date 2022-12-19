@@ -3,7 +3,14 @@
 
 <div class="row">
     <div>
-        <button (click)="multiplicar()" class="waves-effect waves-light btn grey darken-3 mr-2">Multiplicar</button>
-        <button (click)="dividir()" class="waves-effect waves-light btn grey darken-3 ml-2">Dividir</button>
+        <button (click)="multiplyCounter()" class="waves-effect waves-light btn blue mr-2">Multiplicar</button>
+        <button (click)="divideCounter()" class="waves-effect waves-light btn blue ml-2">Dividir</button>
+    </div>
+</div>
+
+<hr>
+<div class="row center-align">
+    <div>
+        <app-grandchild [counter] = "counter" (changeCoaunter)="resetGrandchild($event) "></app-grandchild>
     </div>
 </div>

@@ -5,6 +5,9 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+/**
+ * Clase que incrementa y decrementa el contador padre
+ */
 export class AppComponent {
   title = 'pokedex-app';
 
@@ -23,14 +26,14 @@ export class AppComponent {
   /**
    * Decrementa el contador
    */
-  incrementar(){
+  increaseCounter(){
     this.counter++;
   }
 
   /**
    * Incrementa el contador
    */
-  decrementar(){
+  decreaseCounter(){
     this.counter--;
   }
 }

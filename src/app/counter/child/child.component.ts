@@ -6,6 +6,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styles: [
   ]
 })
+/**
+ * Clase que incrementa y decrementa el contador hijo
+ */
 export class ChildComponent {
 
   /**
@@ -24,17 +27,23 @@ export class ChildComponent {
   /**
    * Multiplica el contador en 2
    */
-  multiplicar(){
+  multiplyCounter(){
     this.counter *= 2;
     this.changeCounter.emit(this.counter);
-
   }
   /**
    * Divide el contador en 2
    */
-  dividir(){
+  divideCounter(){
     this.counter /= 2;
     this.changeCounter.emit(this.counter);
-
+  }
+  /**
+   * Captura el evento recibido del nieto para enviarlo al padre
+   * @param newContador 
+   */
+  resetGrandchild(newContador:number){
+    this.counter = newContador;
+    this.changeCounter.emit(this.counter);
   }
 }
