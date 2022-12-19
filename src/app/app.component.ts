@@ -7,4 +7,30 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'pokedex-app';
+
+  /**
+   * Variable contador
+   */
+  counter: number;
+
+  /**
+   * Constructor
+   */
+  constructor(){
+    this.counter = 10;
+  }
+
+  /**
+   * Decrementa el contador
+   */
+  incrementar(){
+    this.counter++;
+  }
+
+  /**
+   * Incrementa el contador
+   */
+  decrementar(){
+    this.counter--;
+  }
 }
