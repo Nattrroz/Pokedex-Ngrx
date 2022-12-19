@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { State } from '@ngrx/store/src';
 import { Subject } from 'rxjs';
 import { DecreaseCounterAction } from './store/counter/actions/decrease-counter.action';
 import { IncreaseCounterAction } from './store/counter/actions/increase-counter.action';
@@ -22,8 +21,6 @@ export class AppComponent {
    * Variable contador
    */
   counter: number = 10;
-  counter1: number = 10;
-
 
   /**
    * Objeto para quitar la suscripción
