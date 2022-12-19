@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppComponent } from './app.component';
 import { ChildComponent } from './counter/child/child.component';
 import { GrandchildComponent } from './counter/grandchild/grandchild.component';
+import { reducers } from './store/reducers';
 
 @NgModule({
   declarations: [
@@ -12,7 +14,16 @@ import { GrandchildComponent } from './counter/grandchild/grandchild.component';
     GrandchildComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    StoreModule.forRoot(reducers,{
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true
+      }
+    }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
