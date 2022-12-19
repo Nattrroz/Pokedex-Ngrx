@@ -102,5 +102,7 @@
       }
     }
   },
-  "defaultProject": "pokedex-app"
+  "cli": {
+    "analytics": false
+  }
 }
