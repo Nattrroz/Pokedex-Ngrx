@@ -28,13 +28,12 @@ export class AppComponent {
   public unsubscribe: Subject<void> = new Subject<void>();
 
   /**
-   * Constructor
-   * @param store 
+   * Constructor del componente.
+   * @param store Almacén de estados de la aplicación.
    */
   constructor(private store: Store<CounterModuleState>){
-    this.store.subscribe( state => {
-      this.counter = state.counter;
-    });
+    this.store.select(x => x.counter)
+    .subscribe( counter => this.counter = counter);
   }
 
   /**
