@@ -1,17 +1,33 @@
-import { Action } from "@ngrx/store";
 import { ActionsConstants } from "../actions/actions-constants";
+import { DecreaseCounterAction } from "../actions/decrease-counter.action";
+import { DivideCounterAction } from "../actions/divide-counter.action";
+import { IncreaseCounterAction } from "../actions/increase-counter.action";
+import { MultiplyCounterAction } from "../actions/multiply-counter.action";
+
+/**
+ * Todas las acciones que acepta este reducer.
+ */
+export type CounterActions = IncreaseCounterAction
+| DecreaseCounterAction
+| MultiplyCounterAction
+| DivideCounterAction
+;
 
 /**
  * Reducer del manejador del contador.
  * @param state Estado del componente.
  * @param action Acción realizada.
  */
-export function counterReducer (state: number = 10, action: Action){
+export function counterReducer (state: number = 10, action: CounterActions){
     switch( action.type){
         case ActionsConstants.IncreaseCounterAction:
             return state + 1;
         case ActionsConstants.DecreaseCounterAction:
             return state - 1;
+        case ActionsConstants.MultiplyCounterAction:
+            return state * action.payload;
+        case ActionsConstants.DivideCounterAction:
+            return state / action.payload;
         default:
             return state;
     }

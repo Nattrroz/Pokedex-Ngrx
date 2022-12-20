@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { DivideCounterAction } from 'src/app/store/counter/actions/divide-counter.action';
+import { MultiplyCounterAction } from 'src/app/store/counter/actions/multiply-counter.action';
 import { CounterModuleState } from 'src/app/store/counter/app-state/module-state.model';
 
 @Component({
@@ -34,13 +36,14 @@ export class ChildComponent {
    * Multiplica el contador en 2
    */
   multiplyCounter(){
-    this.counter *= 2;
+    this.store.dispatch(new MultiplyCounterAction(2));
   }
+  
   /**
    * Divide el contador en 2
    */
   divideCounter(){
-    this.counter /= 2;
+    this.store.dispatch(new DivideCounterAction(2));
   }
   /**
    * Captura el evento recibido del nieto para enviarlo al padre
