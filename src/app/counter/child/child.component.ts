@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { CounterModuleState } from 'src/app/store/counter/app-state/module-state.model';
 
 @Component({
   selector: 'app-child',
@@ -12,16 +14,20 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class ChildComponent {
 
   /**
-   * Contador que llega del padre
+   * Contador
    */
-  @Input() counter: number = 0; //Nuevas verciones de angular, se debe inicializar la variable
+  counter: number = 0;
+
   /**
-   * Emite un numero al padre por medio del @Output
+   * Constructor
    */
-  @Output() changeCounter = new EventEmitter<number>();
+  constructor(private store: Store<CounterModuleState>){
 
-  constructor(){
+  }
 
+  ngOnInit(){
+    this.store.select(x => x.counter)
+    .subscribe( counter => {this.counter = counter; console.log(counter)})
   }
 
   /**
@@ -29,14 +35,12 @@ export class ChildComponent {
    */
   multiplyCounter(){
     this.counter *= 2;
-    this.changeCounter.emit(this.counter);
   }
   /**
    * Divide el contador en 2
    */
   divideCounter(){
     this.counter /= 2;
-    this.changeCounter.emit(this.counter);
   }
   /**
    * Captura el evento recibido del nieto para enviarlo al padre
@@ -44,6 +48,5 @@ export class ChildComponent {
    */
   resetGrandchild(newContador:number){
     this.counter = newContador;
-    this.changeCounter.emit(this.counter);
   }
 }
