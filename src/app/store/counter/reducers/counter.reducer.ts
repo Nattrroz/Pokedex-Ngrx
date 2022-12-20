@@ -3,6 +3,7 @@ import { DecreaseCounterAction } from "../actions/decrease-counter.action";
 import { DivideCounterAction } from "../actions/divide-counter.action";
 import { IncreaseCounterAction } from "../actions/increase-counter.action";
 import { MultiplyCounterAction } from "../actions/multiply-counter.action";
+import { ResetCounterAction } from "../actions/reset-counter.action";
 
 /**
  * Todas las acciones que acepta este reducer.
@@ -11,6 +12,7 @@ export type CounterActions = IncreaseCounterAction
 | DecreaseCounterAction
 | MultiplyCounterAction
 | DivideCounterAction
+| ResetCounterAction
 ;
 
 /**
@@ -28,6 +30,8 @@ export function counterReducer (state: number = 10, action: CounterActions){
             return state * action.payload;
         case ActionsConstants.DivideCounterAction:
             return state / action.payload;
+        case ActionsConstants.ResetCounterAction:
+            return state = 0;
         default:
             return state;
     }

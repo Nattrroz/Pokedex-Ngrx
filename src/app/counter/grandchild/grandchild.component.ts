@@ -1,4 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { ResetCounterAction } from 'src/app/store/counter/actions/reset-counter.action';
+import { CounterModuleState } from 'src/app/store/counter/app-state/module-state.model';
 
 @Component({
   selector: 'app-grandchild',
@@ -12,19 +15,30 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class GrandchildComponent {
 
   /**
-   * Contador que llega del padre
+   * Contador
    */
-  @Input() counter: number = 0; //Nuevas verciones de angular, se debe inicializar la variable
-  /**
-   * Emite un cambio o evento al padre por medio del @Output
-   */
-  @Output() changeCoaunter = new EventEmitter<number>();
+  counter: number = 0;
   
+  /**
+   * Constructor del componente.
+   * @param store Almacén de estados de la aplicación.
+   */
+  constructor(private store: Store<CounterModuleState>) {
+    
+  }
+
+  /**
+   * Método que se ejecuta al iniciar el componente.
+   */
+  ngOnInit(){
+    this.store.select(x => x.counter)
+    .subscribe( counter => this.counter = counter);
+  }
+
   /**
    * Reinicia el contador a 0
    */
   resetCounter(){
-    this.counter = 0;
-    this.changeCoaunter.emit(this.counter);
+    this.store.dispatch(new ResetCounterAction);
   }
 }

@@ -11,5 +11,6 @@ export enum ActionsConstants{
     MultiplyCounterAction = '[Multiply Counter] Multiply Counter Action',
     //Dividir
     DivideCounterAction = '[Divide Counter] Divide Counter Action',
-
+    //Reiniciar contador
+    ResetCounterAction = '[Reset Counter] Reset Counter Action',
 }

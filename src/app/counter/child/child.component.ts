@@ -21,15 +21,19 @@ export class ChildComponent {
   counter: number = 0;
 
   /**
-   * Constructor
+   * Constructor del componente.
+   * @param store Almacén de estados de la aplicación.
    */
   constructor(private store: Store<CounterModuleState>){
 
   }
 
+  /**
+   * Método que se ejecuta al iniciar el componente.
+   */
   ngOnInit(){
     this.store.select(x => x.counter)
-    .subscribe( counter => {this.counter = counter; console.log(counter)})
+    .subscribe( counter => this.counter = counter);
   }
 
   /**
