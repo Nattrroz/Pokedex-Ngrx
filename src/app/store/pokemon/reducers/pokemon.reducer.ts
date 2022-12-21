@@ -18,11 +18,11 @@ export type PokemonActions = GetPokemonAction
 export function PokemonReducer(state: PokemonState | undefined = initialStatePokemon, action: PokemonActions){
     switch(action.type){
         case ActionsConstants.GetPokemonAction:
-        case ActionsConstants.SetLoadingPokemonAction:
-            return {...state, isLoading: false};
+            return {...state, isLoading: true};
         case ActionsConstants.GetPokemonSuccessAction:
             return{
                 ...state,
+                isLoading: true,
                 id: action.pokemon.id,
                 height: action.pokemon.height,
                 name: action.pokemon.name,
@@ -37,7 +37,8 @@ export function PokemonReducer(state: PokemonState | undefined = initialStatePok
                 stats: action.pokemon.stats,
                 weight: action.pokemon.weight
             };
-            
+        case ActionsConstants.SetLoadingPokemonAction:
+            return{ ...state, isLoading: action.isLoading}
         default:
             return state;
     }

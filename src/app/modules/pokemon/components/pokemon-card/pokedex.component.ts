@@ -1,11 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
+import { DreamWorldSprite } from 'src/app/core/models/pokemon/pokemon-sprites';
+import { PokemonStats } from 'src/app/core/models/pokemon/pokemon-stats';
 import { Pokemon } from 'src/app/core/models/pokemon/pokemon.model';
 import { AppState } from 'src/app/store/app-state/app-state.model';
-import { GetPokemonAction } from 'src/app/store/pokemon/actions/get-pokemon.action';
-import { pokemonAdapter } from 'src/app/store/pokemon/adapters/pokemon.adapter';
-import { PokemonState } from 'src/app/store/pokemon/app-state/pokemon-state.model';
 
 @Component({
   selector: 'app-pokedex',
@@ -29,21 +28,32 @@ export class PokedexComponent {
   @Input() public pokemonId: number = 1;
 
   /**
-   * Contador
+   * Observable de tipo pokemón.
    */
-  public counter: number = 0;
+  public pokemon$: Observable<Pokemon>;
 
-  public pokemon: PokemonState | undefined;
+  /**
+   * Observable para los sprites del pokemón.
+   */
+  public sprites$: Observable<DreamWorldSprite>;
+
+  /**
+   * Observable para los stats del pokemón.
+   */
+  public stats$: Observable<PokemonStats[]>;
+  
+  /**
+  * Indica si se muestra el cargador del componente o no.
+  */
+  public isLoading$: Observable<boolean>;
   
   constructor(protected _store: Store<AppState>) {
-    this._store.subscribe( state => {this.pokemon = state.pokemon});
-
+    this.isLoading$ = this._store.select(state => state.pokemon.isLoading);
+    this.pokemon$ = _store.select(state => state.pokemon);
+    this.sprites$ = _store.select(state => state.pokemon.sprites.other.dream_world);
+    this.stats$ = _store.select(state => state.pokemon.stats)
   }
   ngOnInit(){
 
-  }
-  increaseCounter(){
-    this.counter ++;
-    this._store.dispatch(new GetPokemonAction(this.counter));
   }
 }

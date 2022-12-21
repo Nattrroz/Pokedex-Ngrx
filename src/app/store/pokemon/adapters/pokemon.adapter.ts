@@ -12,29 +12,27 @@ export const pokemonAdapter: EntityAdapter<Pokemon> = createEntityAdapter<Pokemo
 /**
  * Estado inicial del pokemón.
  */
-
 export const initialStatePokemon: PokemonState = pokemonAdapter.getInitialState({
     isLoading: false,
-    id: null,
-    
-    height: null,
-    name: null,
-    base_experience: null,
+    id: 0,
+    height: 0,
+    name: '',
+    base_experience: 0,
     sprites: {
         other:{
             dream_world:{
-                front_default: null
+                front_default: ''
             }
         }
     },
     stats: [{
-        base_stat: null,
-        effort: null,
+        base_stat: 0,
+        effort: 0,
         stat: {
-            name: null
+            name: ''
         }
     }],
-    weight: null,
+    weight: 0,
 });
 
 /**

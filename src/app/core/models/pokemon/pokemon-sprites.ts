@@ -10,7 +10,7 @@ export interface PokemonSprites{
 /**
  * Objeto
  */
-type OtherSprite = {
+export type OtherSprite = {
     /**
      * Sprite del dream world
      */
@@ -19,7 +19,7 @@ type OtherSprite = {
 /**
  * Objeto
  */
-type DreamWorldSprite = {
+export type DreamWorldSprite = {
     /**
      * Sprite por defecto del dream world
      */

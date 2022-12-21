@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { DecreaseCounterAction } from './store/counter/actions/decrease-counter.action';
 import { IncreaseCounterAction } from './store/counter/actions/increase-counter.action';
 import { CounterModuleState } from './store/counter/app-state/module-state.model';
+import { GetPokemonAction } from './store/pokemon/actions/get-pokemon.action';
 
 @Component({
   selector: 'app-root',
@@ -49,6 +50,8 @@ export class AppComponent {
    */
   increaseCounter(){
     this.store.dispatch(new IncreaseCounterAction);
+    this.store.dispatch(new GetPokemonAction(this.counter));
+
   }
 
   /**
@@ -56,5 +59,6 @@ export class AppComponent {
    */
   decreaseCounter(){
     this.store.dispatch(new DecreaseCounterAction);
+    this.store.dispatch(new GetPokemonAction(this.counter));
   }
 }

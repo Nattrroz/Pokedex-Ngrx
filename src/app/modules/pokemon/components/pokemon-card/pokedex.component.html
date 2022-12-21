@@ -1,6 +1,24 @@
-<p>pokedex works!</p>
-<div class="row center-align">
+
+<p>{{(pokemon$|async)?.name}}</p>
+<p>{{(pokemon$|async)?.id}}</p>
+<p>{{(pokemon$|async)?.stats}}</p>
+
+<p>{{(sprites$|async)?.front_default}}</p>
+
+<p>{{(isLoading$|async)}}</p>
+
+
+
+<div class="row container" id="preloader" [ngClass]="{'hide': !(isLoading$|async)}">
+  <div class="progress">
+    <div class="indeterminate"></div>
+  </div>
+</div>
+
+
+
+<!-- <div class="row center-align">
     <div class="">
       <button (click)="increaseCounter()" class="waves-effect waves-light btn green mr-2"><i class="material-icons right">add</i>Incrementar</button>
     </div>
-  </div>
+  </div> -->
