@@ -5,6 +5,7 @@ import { DreamWorldSprite } from 'src/app/core/models/pokemon/pokemon-sprites';
 import { PokemonStats } from 'src/app/core/models/pokemon/pokemon-stats';
 import { Pokemon } from 'src/app/core/models/pokemon/pokemon.model';
 import { AppState } from 'src/app/store/app-state/app-state.model';
+import { GetPokemonAction } from 'src/app/store/pokemon/actions/get-pokemon.action';
 
 @Component({
   selector: 'app-pokedex',
@@ -54,6 +55,6 @@ export class PokedexComponent {
     this.stats$ = _store.select(state => state.pokemon.stats)
   }
   ngOnInit(){
-
+    this._store.dispatch(new GetPokemonAction(1));
   }
 }

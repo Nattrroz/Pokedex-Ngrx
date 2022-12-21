@@ -1,24 +1,56 @@
+<div class="row grey darken-3">
 
-<p>{{(pokemon$|async)?.name}}</p>
-<p>{{(pokemon$|async)?.id}}</p>
-<p>{{(pokemon$|async)?.stats}}</p>
+  <div class="row white-text background-container">
+    <div class="">
+      <h1><b>{{(pokemon$|async)?.name | titlecase}}</b></h1>
+    </div>
+  </div>
 
-<p>{{(sprites$|async)?.front_default}}</p>
+  <div class="relative z-10 center-align">
+    <img class="sprites-images relative inline w-96 h-96 top-14" src="{{(sprites$|async)?.front_default}}">
+  </div>
 
-<p>{{(isLoading$|async)}}</p>
+  <div class="row white rounded-t-3xl">
+    
+    <div class="h-12"></div>
+    <ul id="tabs-swipe-demo" class="tabs">
+      <li class="tab col s4"><a href="#test-swipe-1">Acerca de</a></li>
+      <li class="tab col s4"><a class="active" href="#test-swipe-2">Estados base</a></li>
+      <li class="tab col s4"><a href="#test-swipe-3">Evolución</a></li>
+    </ul>
 
+    <div id="test-swipe-1" class="col s12">
 
+      <div class="">
+        <div class="text-xl leading-10 col l2 m2 offset-l4 offset-m3 text-gray-400">
+          <p>Experiencia base</p>
+          <p>Habilidades</p>
+          <p>Especies</p>
+          <p>Altura</p>
+          <p>Peso</p>
+        </div> 
+        <div class="text-xl leading-10 col l2 m2 offset-l2 offset-m3 font-medium">
+          <p>{{(pokemon$|async)?.base_experience}}</p>
+          <p>Habilidades</p>
+          <p>Especies</p>
+          <p>{{(pokemon$|async)?.height}}</p>
+          <p>{{(pokemon$|async)?.weight}}</p>
+        </div>
+        
+        <div class="row" id="preloader" [ngClass]="{'hide': !(isLoading$|async)}">
+          <div class="progress">
+            <div class="indeterminate"></div>
+          </div>
+        </div>
 
-<div class="row container" id="preloader" [ngClass]="{'hide': !(isLoading$|async)}">
-  <div class="progress">
-    <div class="indeterminate"></div>
+        <!-- <li *ngFor="let item of (pokemon$|async)?.stats">
+          <p>{{item.stat.name}}</p>
+        </li> -->
+        
+      </div>
+
+    </div>
+    <div id="test-swipe-2" class="col s12 ">Test 2</div>
+    <div id="test-swipe-3" class="col s12 ">Test 3</div>
   </div>
 </div>
-
-
-
-<!-- <div class="row center-align">
-    <div class="">
-      <button (click)="increaseCounter()" class="waves-effect waves-light btn green mr-2"><i class="material-icons right">add</i>Incrementar</button>
-    </div>
-  </div> -->

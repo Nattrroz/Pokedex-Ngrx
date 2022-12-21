@@ -20,7 +20,7 @@ export type CounterActions = IncreaseCounterAction
  * @param state Estado del componente.
  * @param action Acción realizada.
  */
-export function counterReducer (state: number = 10, action: CounterActions){
+export function counterReducer (state: number = 1, action: CounterActions){
     switch( action.type){
         case ActionsConstants.IncreaseCounterAction:
             return state + 1;
