@@ -1,31 +1,14 @@
-<!-- <div class="relative h-screen row grid grid-rows-6">
-
- 
-  
-  <div class="center-align row-start-2 row-end-3 z-10">
-    <div class="">
-      <app-pokedex [pokemonId]="counter"></app-pokedex>
-    </div>
-  </div>
-  
-  <div class="absolute center-align  z-20">
-    <div class="h-screen">
-      <button (click)="decreaseCounter()" class="waves-effect waves-light btn red flex justify-start mr-2"><i class="material-icons right">remove</i>Decrementar</button>
-      <button (click)="increaseCounter()" class="waves-effect waves-light btn green flex justify-end ml-2"><i class="material-icons right">add</i>Incrementar</button>
-    </div>
-  </div>
-</div> -->
 
 <div class="relative row m-0">
-
+  <!-- Counter -->
+  <div class="absolute flex w-screen h-96 md:justify-around justify-between items-end z-20">
+    <button (click)="decreaseCounter()" class="btn-floating btn-large waves-effect grey lighten-5 left-align opacity-50">
+      <i class="material-icons right grey-text text-darken-1 opacity-1">navigate_before</i></button>
+    <button (click)="increaseCounter()" class="btn-floating btn-large waves-effect grey lighten-5 right-align opacity-50">
+      <i class="material-icons right grey-text text-darken-1">navigate_next</i></button>
+  </div>
+  <!-- Pokedex component -->
   <div class="">
     <app-pokedex [pokemonId]="counter"></app-pokedex>
-  </div>
-
-  <div class="center-align">
-    <div class="">
-      <button (click)="decreaseCounter()" class="waves-effect waves-light btn red flex justify-start mr-2"><i class="material-icons right">remove</i>Decrementar</button>
-      <button (click)="increaseCounter()" class="waves-effect waves-light btn green flex justify-end ml-2"><i class="material-icons right">add</i>Incrementar</button>
-    </div>
   </div>
 </div>

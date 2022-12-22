@@ -5,10 +5,8 @@ import { Observable } from "rxjs";
 import { PokemonEndpointService, POKEMON_ENDPOINT_SERVICE } from "src/app/core/interfaces/services/pokemon/pokemon-endpoint-service.interface";
 import { ActionsConstants } from "../actions/actions-constants";
 import { GetPokemonAction } from "../actions/get-pokemon.action";
-import { catchError, switchMap } from "rxjs/operators";
+import { switchMap } from "rxjs/operators";
 import { SetLoadingPokemonAction } from "../actions/set-loading-pokemon.action";
-import { PokemonState } from "../app-state/pokemon-state.model";
-import { Pokemon } from "src/app/core/models/pokemon/pokemon.model";
 import { GetPokemonSuccessAction } from "../actions/get-pokemon-success.action";
 
 /**
@@ -44,9 +42,7 @@ export class GetPokemonInfoEffect{
                         new GetPokemonSuccessAction(response),
                         new SetLoadingPokemonAction(false)
                     ]
-                    
                 })
-                
             ))
         )
     }

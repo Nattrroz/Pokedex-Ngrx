@@ -4,6 +4,9 @@
     <div class="">
       <h1><b>{{(pokemon$|async)?.name | titlecase}}</b></h1>
     </div>
+    <div class="">
+      <h1><b>#{{(pokemon$|async)?.id | number: '3.'}}</b></h1>
+    </div>
   </div>
 
   <div class="relative z-10 center-align">
@@ -15,33 +18,29 @@
     <div class="h-12"></div>
     <ul id="tabs-swipe-demo" class="tabs">
       <li class="tab col s4"><a href="#test-swipe-1">Acerca de</a></li>
-      <li class="tab col s4"><a class="active" href="#test-swipe-2">Estados base</a></li>
+      <li class="tab col s4"><a href="#test-swipe-2">Estados base</a></li>
       <li class="tab col s4"><a href="#test-swipe-3">Evolución</a></li>
     </ul>
 
     <div id="test-swipe-1" class="col s12">
 
       <div class="">
-        <div class="text-xl leading-10 col l2 m2 offset-l4 offset-m3 text-gray-400">
+        <div class="text-xl leading-10 col l2 m3 s4 offset-l4 offset-m3 offset-s1 text-gray-400 ">
           <p>Experiencia base</p>
           <p>Habilidades</p>
           <p>Especies</p>
           <p>Altura</p>
           <p>Peso</p>
         </div> 
-        <div class="text-xl leading-10 col l2 m2 offset-l2 offset-m3 font-medium">
+        <div class="text-xl leading-10 col l2 m3 s4 offset-l2 offset-m3 offset-s1 font-medium ">
           <p>{{(pokemon$|async)?.base_experience}}</p>
           <p>Habilidades</p>
           <p>Especies</p>
-          <p>{{(pokemon$|async)?.height}}</p>
-          <p>{{(pokemon$|async)?.weight}}</p>
+          <p>{{(pokemon$|async)!.height / 10}} m.</p>
+          <p>{{(pokemon$|async)!.weight / 10}} kg</p>
         </div>
         
-        <div class="row" id="preloader" [ngClass]="{'hide': !(isLoading$|async)}">
-          <div class="progress">
-            <div class="indeterminate"></div>
-          </div>
-        </div>
+        
 
         <!-- <li *ngFor="let item of (pokemon$|async)?.stats">
           <p>{{item.stat.name}}</p>
@@ -52,5 +51,13 @@
     </div>
     <div id="test-swipe-2" class="col s12 ">Test 2</div>
     <div id="test-swipe-3" class="col s12 ">Test 3</div>
+
+    <div class="row col l8 m10 s10 offset-l2 offset-m1 offset-s1" id="preloader" [ngClass]="{'hide': !(isLoading$|async)}">
+      <div class="progress">
+        <div class="indeterminate"></div>
+      </div>
+    </div>
+
+    
   </div>
 </div>

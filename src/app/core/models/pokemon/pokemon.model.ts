@@ -33,4 +33,25 @@ export interface Pokemon{
      * Peso del pokemón.
      */
     weight: number;
+    /**
+     * Especie de pokemón.
+     */
+    //species: Species;
+
+    /**
+     * Tipos de pokemón.
+     */
+    //types: Types[];
 }
+
+// type Species = {
+//     name: string;
+// }
+
+// type Types = {
+//     type: Type;
+// }
+
+// type Type = {
+//     name: string;
+// }
