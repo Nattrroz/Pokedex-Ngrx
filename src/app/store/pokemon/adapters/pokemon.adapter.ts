@@ -33,6 +33,15 @@ export const initialStatePokemon: PokemonState = pokemonAdapter.getInitialState(
         }
     }],
     weight: 0,
+    abilities: [{
+        ability: {
+            name: ''
+        },
+        is_hidden: false
+    }],
+    species: {
+        name: ''
+    }
 });
 
 /**

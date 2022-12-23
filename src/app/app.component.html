@@ -2,7 +2,13 @@
 <div class="relative row">
 
   <!-- Counter -->
-  <div class="absolute flex w-screen h-96 md:h-96 md:justify-around justify-between items-end z-20">
+  <div class="absolute flex w-screen h-96 md:h-96 md:justify-around justify-between items-end z-20 hide-on-med-and-up">
+    <button (click)="decreaseCounter()" class="btn-floating btn-small waves-effect grey lighten-5 left-align opacity-50 ml-16">
+      <i class="material-icons right grey-text text-darken-1 opacity-1">navigate_before</i></button>
+    <button (click)="increaseCounter()" class="btn-floating btn-small waves-effect grey lighten-5 right-align opacity-50 mr-16">
+      <i class="material-icons right grey-text text-darken-1">navigate_next</i></button>
+  </div>
+  <div class="absolute flex w-screen h-96 md:h-96 md:justify-around justify-between items-end z-20 hide-on-small-only">
     <button (click)="decreaseCounter()" class="btn-floating btn-large waves-effect grey lighten-5 left-align opacity-50 ml-16">
       <i class="material-icons right grey-text text-darken-1 opacity-1">navigate_before</i></button>
     <button (click)="increaseCounter()" class="btn-floating btn-large waves-effect grey lighten-5 right-align opacity-50 mr-16">

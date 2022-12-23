@@ -34,19 +34,38 @@ export interface Pokemon{
      */
     weight: number;
     /**
+     * Habilidades del pokemón.
+     */
+    abilities: Abilities[]
+    /**
      * Especie de pokemón.
      */
-    //species: Species;
+    species: Species;
 
     /**
      * Tipos de pokemón.
      */
     //types: Types[];
 }
-
-// type Species = {
-//     name: string;
-// }
+/**
+ * Tipo de habilidades del pokemón.
+ */
+export type Abilities = {
+    ability: Ability;
+    is_hidden: boolean;
+}
+/**
+ * Nombre de habilidad del pokemón.
+ */
+ export type Ability = {
+    name: string;
+}
+/**
+ * Tipo de especie de pokemón.
+ */
+export type Species = {
+    name: string;
+}
 
 // type Types = {
 //     type: Type;

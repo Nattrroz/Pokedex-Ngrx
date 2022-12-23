@@ -1,7 +1,7 @@
 <div class="grey darken-3 pokedex-container ">
   <div class="sm:h-0 h-16 grey darken-3"></div>
   <br>
-  <div class="white-text col l10 m10 s10 offset-l1 offset-m1 offset-s1 z-30">
+  <div class="white-text col l10 m10 s10 offset-l1 offset-m1 offset-s1 z-30 font-mono">
     <div class="left-align sm:text-8xl text-4xl">
       <p><b>{{(pokemon$|async)?.name | titlecase}}</b></p>
     </div>
@@ -9,59 +9,109 @@
       <p><b>#{{(pokemon$|async)?.id | number: '3.'}}</b></p>
     </div>
   </div>
-
   <div class="sm:h-0 h-32 grey darken-3"></div>
 
-
+  <!-- imagen -->
   <div class="relative z-10 center-align">
-    <img class="sprites-images relative inline md:w-96 md:h-96 w-64 h-64 top-14" src="{{(sprites$|async)?.front_default}}">
+    <img class="sprites-images relative inline md:w-96 md:h-96 w-64 h-64 top-14" src="{{(sprites$|async)?.front_default}}" alt="Imagen de pokemón.">
   </div>
 
+  <!-- Tabs -->
   <div class=" row white rounded-t-3xl">
-    
     <div class="h-12"></div>
-    <ul id="tabs-swipe-demo" class="tabs">
-      <li class="tab col s4"><a href="#test-swipe-1">Acerca de</a></li>
-      <li class="tab col s4"><a href="#test-swipe-2">Estados base</a></li>
-      <li class="tab col s4"><a href="#test-swipe-3">Evolución</a></li>
+    <ul id="tabs-swipe-demo" class="tabs font-sans">
+      <li class="tab col s4"><a href="#test-swipe-1" class="cyan-text"><b>Información</b></a></li>
+      <li class="tab col s4"><a href="#test-swipe-2" class="cyan-text active"><b>Estados base</b></a></li>
+      <li class="tab col s4"><a href="#test-swipe-3" class="cyan-text"><b>Evolución</b> </a></li>
     </ul>
 
+    <!-- Contenido del tab "Información"-->
     <div id="test-swipe-1" class="col s12 white">
-
       <div class="">
-        <div class="text-xl leading-10 col l2 m3 s4 offset-l4 offset-m3 offset-s1 text-gray-400 ">
-          <p>Experiencia base</p>
-          <p>Habilidades</p>
+        <div class="text-xl leading-10 col l2 m3 s5 offset-l3 offset-m2 offset-s1 text-zinc-400">
           <p>Especies</p>
           <p>Altura</p>
           <p>Peso</p>
-        </div> 
-        <div class="text-xl leading-10 col l2 m3 s4 offset-l2 offset-m3 offset-s1 font-medium ">
-          <p>{{(pokemon$|async)?.base_experience}}</p>
-          <p>Habilidades</p>
-          <p>Especies</p>
+        </div>
+        <div class="text-xl leading-10 col l2 m3 s5 offset-l3 offset-m2 offset-s1 font-medium">
+          <p>{{(pokemon$|async)!.species.name}}</p>
           <p>{{(pokemon$|async)!.height / 10}} m.</p>
           <p>{{(pokemon$|async)!.weight / 10}} kg</p>
         </div>
-        
-        
 
-        <!-- <li *ngFor="let item of (pokemon$|async)?.stats">
-          <p>{{item.stat.name}}</p>
-        </li> -->
-        
+        <p class="text-xl leading-10 col l4 m6 s10 offset-l3 offset-m2 offset-s1 text-zinc-400"><b>Habilidades</b></p>
+        <div>
+          <div class="text-xl leading-10 col l4 m3 s5 offset-l3 offset-m2 offset-s1 text-zinc-400">
+            <ul *ngFor="let item of (pokemon$|async)?.abilities">
+              <li><p>{{item.ability.name}}</p></li>
+            </ul>
+          </div>
+          <div class="text-xl leading-10 col l2 m3 s5 offset-l1 offset-m2 offset-s1 font-medium">
+            <ul *ngFor="let item of (pokemon$|async)?.abilities">
+              <li><p *ngIf="item.is_hidden; then thenTrue else elseFalse"></p></li>
+              <ng-template #thenTrue>Oculto</ng-template>
+              <ng-template #elseFalse>No oculto</ng-template>
+            </ul>
+          </div>
+        </div>
       </div>
-
     </div>
-    <div id="test-swipe-2" class="col s12 ">Test 2</div>
+
+    <!-- La experiencia base es una cantidad fija de puntos de experiencia entre 20, como mínimo, y 255 (608 a partir de la quinta generación), como máximo -->
+    <!-- Contenido del tab "Estados base"-->
+    <div id="test-swipe-2" class="col s12 white">
+      <div class="">
+        <div class="text-xl leading-10 col l2 m3 s4 offset-l3 offset-m2 offset-s1 text-zinc-400">
+          <p>Experiencia base</p>
+        </div>
+        <div class="text-xl leading-10 col l3 m4 s6 offset-l2 offset-m1 font-medium flex">
+          <p class="w-12">{{(pokemon$|async)!.base_experience}}</p>
+          <div class="progress pt-2 self-end blue lighten-4">
+            <div class="determinate rounded-full blue" style='width:{{(pokemon$|async)!.base_experience * .164473684}}%'></div> <!-- Calculo del xp base -->
+          </div>
+        </div>
+
+        <!-- Stats, estats base 255 max -->
+        <p class="text-xl leading-10 col l4 m6 s10 offset-l3 offset-m2 offset-s1 text-zinc-400"><b>Stats</b></p>
+        <div>
+          <div class="text-xl leading-10 col l4 m3 s4 offset-l3 offset-m2 offset-s1 text-zinc-400">
+            <ul *ngFor="let item of (pokemon$|async)?.stats">
+              <li><p>{{item.stat.name}}</p></li>
+            </ul>
+          </div>
+          <ul *ngFor="let item of (pokemon$|async)?.stats">
+            <li class="text-xl leading-10 col l3 m4 s6  offset-m1 font-medium flex">
+              <p class="w-12">{{item.base_stat}}</p>
+              <div class="progress pt-2 self-end red lighten-5">
+                <div class="determinate rounded-full red" style='width:{{item.base_stat * .392156863}}%'></div> <!-- Calculo del xp base (255) -->
+              </div>
+            </li>
+          </ul>
+        </div>
+
+
+
+        
+        
+
+
+
+      </div>
+    </div>
+
+   
+
+    
+
+
+    <!-- Contenido del tab "?"-->
     <div id="test-swipe-3" class="col s12 ">Test 3</div>
 
+    <!-- Cargador -->
     <div class="col l8 m10 s10 offset-l2 offset-m1 offset-s1" id="preloader" [ngClass]="{'hide': !(isLoading$|async)}">
       <div class="progress">
         <div class="indeterminate"></div>
       </div>
     </div>
-
-    
   </div>
 </div>
