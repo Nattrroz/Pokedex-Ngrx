@@ -1,17 +1,3 @@
-/* *{
-    margin: 0;
-    padding: 0;
-} */
-
-#test-swipe-1{
-    margin-top: 2rem;
+.chip {
+    background-color: #ffffff30;
 }
-#test-swipe-2{
-    margin-top: 2rem;
-}
-#test-swipe-3{
-    margin-top: 2rem;
-}
-/* .tabs .indicator {
-    background-color: rgb(25, 0, 255) !important;
-} */

@@ -1,21 +1,17 @@
-
 <div class="relative row">
+  <div
+    class="absolute flex w-screen h-96 md:h-96 md:justify-around justify-between items-end z-20 sm:mt-14 md:mt-28  mt-14">
+    <a (click)="decreaseCounter()"
+      class="cursor-pointer ml-2 transparent opacity-90 transition ease-in-out delay-150 text-neutral-300 hover:-translate-y-1 hover:scale-110 hover:text-white duration-300"
+      [ngClass]="{'btn-flat disabled': counter == 1}">
+      <i class="medium material-icons left">navigate_before</i></a>
+    <a (click)="increaseCounter()"
+      class="cursor-pointer mr-2 transparent opacity-90 transition ease-in-out delay-150 text-neutral-300 hover:-translate-y-1 hover:scale-110 hover:text-white duration-300">
+      <i class="medium material-icons right">navigate_next</i></a>
+  </div>
 
-  <!-- Counter -->
-  <div class="absolute flex w-screen h-96 md:h-96 md:justify-around justify-between items-end z-20 hide-on-med-and-up">
-    <button (click)="decreaseCounter()" class="btn-floating btn-small waves-effect grey lighten-5 left-align opacity-50 ml-16">
-      <i class="material-icons right grey-text text-darken-1 opacity-1">navigate_before</i></button>
-    <button (click)="increaseCounter()" class="btn-floating btn-small waves-effect grey lighten-5 right-align opacity-50 mr-16">
-      <i class="material-icons right grey-text text-darken-1">navigate_next</i></button>
-  </div>
-  <div class="absolute flex w-screen h-96 md:h-96 md:justify-around justify-between items-end z-20 hide-on-small-only">
-    <button (click)="decreaseCounter()" class="btn-floating btn-large waves-effect grey lighten-5 left-align opacity-50 ml-16">
-      <i class="material-icons right grey-text text-darken-1 opacity-1">navigate_before</i></button>
-    <button (click)="increaseCounter()" class="btn-floating btn-large waves-effect grey lighten-5 right-align opacity-50 mr-16">
-      <i class="material-icons right grey-text text-darken-1">navigate_next</i></button>
-  </div>
   <!-- Pokedex component -->
-  <div class="">
-    <app-pokedex [pokemonId]="counter"></app-pokedex>
+  <div>
+    <app-pokedex></app-pokedex>
   </div>
 </div>

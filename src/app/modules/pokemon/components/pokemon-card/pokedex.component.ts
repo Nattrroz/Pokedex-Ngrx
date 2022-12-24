@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
+import { GetPokemonType, GetPokemonTypeBackground, GetPokemonTypeIcon, PokemonTypes } from 'src/app/core/models/enums/pokemon-types.enum';
 import { DreamWorldSprite } from 'src/app/core/models/pokemon/pokemon-sprites';
 import { PokemonStats } from 'src/app/core/models/pokemon/pokemon-stats';
-import { Pokemon } from 'src/app/core/models/pokemon/pokemon.model';
+import { Pokemon, Types } from 'src/app/core/models/pokemon/pokemon.model';
 import { AppState } from 'src/app/store/app-state/app-state.model';
 import { GetPokemonAction } from 'src/app/store/pokemon/actions/get-pokemon.action';
 
@@ -24,11 +25,6 @@ export class PokedexComponent {
   public unsubscribe: Subject<void> = new Subject<void>();
 
   /**
-  * Identificador de entrada del pokemón.
-  */
-  @Input() public pokemonId: number = 1;
-
-  /**
    * Observable de tipo pokemón.
    */
   public pokemon$: Observable<Pokemon>;
@@ -39,22 +35,85 @@ export class PokedexComponent {
   public sprites$: Observable<DreamWorldSprite>;
 
   /**
-   * Observable para los stats del pokemón.
-   */
-  public stats$: Observable<PokemonStats[]>;
-  
-  /**
   * Indica si se muestra el cargador del componente o no.
   */
   public isLoading$: Observable<boolean>;
-  
+
+  /**
+   * Tipos de pokemones.
+  */
+  public pokemonTypes = Object.values(PokemonTypes).filter(
+    (value) => typeof value === "string"
+  );
+
+  /**
+   * Observable para obtener el background del tipo de pokemon.
+   */
+  public pokemonColorType!: Observable<string[]>
+
+  /**
+   * Constructor
+   * @param _store Almacén de estados de la aplicación.
+   */
   constructor(protected _store: Store<AppState>) {
     this.isLoading$ = this._store.select(state => state.pokemon.isLoading);
     this.pokemon$ = _store.select(state => state.pokemon);
     this.sprites$ = _store.select(state => state.pokemon.sprites.other.dream_world);
-    this.stats$ = _store.select(state => state.pokemon.stats)
+    this.pokemonColorType = _store.select(x => x.pokemon.types.map(x => x.type.name))
   }
-  ngOnInit(){
+
+  /**
+   * Método que se ejecuta al iniciar el componente.
+   */
+  ngOnInit() {
     this._store.dispatch(new GetPokemonAction(1));
+  }
+
+  /**
+   * Obtiene el tipo de pokemón del enumerable.
+   * @param type Tipo de pokemón.
+   */
+  getPokemonType(type: string) {
+    let pokemonType: { text?: string; }[] = [];
+    this.pokemonTypes.forEach((x) => {
+      if (x == type) {
+        pokemonType.push({
+          text: GetPokemonType.get(type),
+        });
+      }
+    });
+    return pokemonType;
+  }
+
+  /**
+   * Obtiene el icono del tipo de pokemón del enumerable.
+   * @param pokemonType Typo de pokemón.
+   */
+  getPokemonTypeIcon(type: string) {
+    let pokemonTypeIcon: { text?: string; }[] = [];
+    this.pokemonTypes.forEach((x) => {
+      if (x == type) {
+        pokemonTypeIcon.push({
+          text: GetPokemonTypeIcon.get(type),
+        });
+      }
+    });
+    return pokemonTypeIcon;
+  }
+
+  /**
+   * Obtiene el background de acuerdo al tipo de pokemón del enumerable.
+   * @param pokemonType Tipo de pokemón.
+   */
+  getPokemonTypeBackground(type: string) {
+    let pokemonColorType: { text?: string; }[] = [];
+    this.pokemonTypes.forEach((x) => {
+      if (x == type) {
+        pokemonColorType.push({
+          text: GetPokemonTypeBackground.get(type),
+        });
+      }
+    })
+    return pokemonColorType.map(x => x.text)[0];
   }
 }

@@ -41,7 +41,12 @@ export const initialStatePokemon: PokemonState = pokemonAdapter.getInitialState(
     }],
     species: {
         name: ''
-    }
+    },
+    types: [{
+        type: {
+            name: ''
+        }
+    }]
 });
 
 /**

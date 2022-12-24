@@ -37,7 +37,8 @@ export function PokemonReducer(state: PokemonState | undefined = initialStatePok
                 stats: action.pokemon.stats,
                 weight: action.pokemon.weight,
                 abilities: action.pokemon.abilities,
-                species: action.pokemon.species
+                species: action.pokemon.species,
+                types: action.pokemon.types
             };
         case ActionsConstants.SetLoadingPokemonAction:
             return{ ...state, isLoading: action.isLoading}

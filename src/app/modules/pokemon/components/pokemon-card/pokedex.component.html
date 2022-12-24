@@ -1,116 +1,112 @@
-<div class="grey darken-3 pokedex-container ">
-  <div class="sm:h-0 h-16 grey darken-3"></div>
+<div class="{{getPokemonTypeBackground((pokemonColorType|async)![0])}}">
   <br>
+  <div class="sm:h-0 h-16"></div>
   <div class="white-text col l10 m10 s10 offset-l1 offset-m1 offset-s1 z-30 font-mono">
     <div class="left-align sm:text-8xl text-4xl">
-      <p><b>{{(pokemon$|async)?.name | titlecase}}</b></p>
+      <p class="drop-shadow-2xl"><b>{{(pokemon$|async)?.name | titlecase}}</b></p>
     </div>
-    <div class="right-align sm:text-4xl text-2xl">
+    <div class="right-align sm:text-4xl text-2xl opacity-50">
       <p><b>#{{(pokemon$|async)?.id | number: '3.'}}</b></p>
     </div>
+    <!-- Tipos de pokemón -->
+    <ul class="sm:flex h-20">
+      <li class="left-align content-start" *ngFor="let item of (pokemon$|async)?.types">
+        <div class="chip white-text drop-shadow-2xl" *ngFor="let type of getPokemonType(item.type.name)">{{type.text}}
+          <img *ngFor="let icon of getPokemonTypeIcon(item.type.name)" src="{{icon.text}}" alt="Tipo de pokemón">
+        </div>
+      </li>
+    </ul>
   </div>
-  <div class="sm:h-0 h-32 grey darken-3"></div>
 
   <!-- imagen -->
   <div class="relative z-10 center-align">
-    <img class="sprites-images relative inline md:w-96 md:h-96 w-64 h-64 top-14" src="{{(sprites$|async)?.front_default}}" alt="Imagen de pokemón.">
+    <img class="sprites-images relative inline md:w-96 md:h-96 w-64 h-64 top-14"
+      src="{{(sprites$|async)?.front_default}}" alt="Imagen de pokemón.">
   </div>
 
   <!-- Tabs -->
-  <div class=" row white rounded-t-3xl">
-    <div class="h-12"></div>
+  <div class="row rounded-t-3xl white">
+    <div class="h-10"></div>
     <ul id="tabs-swipe-demo" class="tabs font-sans">
-      <li class="tab col s4"><a href="#test-swipe-1" class="cyan-text"><b>Información</b></a></li>
-      <li class="tab col s4"><a href="#test-swipe-2" class="cyan-text active"><b>Estados base</b></a></li>
-      <li class="tab col s4"><a href="#test-swipe-3" class="cyan-text"><b>Evolución</b> </a></li>
+      <li class="tab col s6 l4 offset-l2"><a href="#test-swipe-1" class="cyan-text"><b>Información</b></a></li>
+      <li class="tab col s6 l4"><a href="#test-swipe-2" class="cyan-text"><b>Estados base</b></a></li>
     </ul>
 
+    <!-- Cargador -->
+    <div class="progress -top-3 opacity-1" [ngClass]="{'hide': !(isLoading$|async)}">
+      <div class="indeterminate"></div>
+    </div>
+
     <!-- Contenido del tab "Información"-->
-    <div id="test-swipe-1" class="col s12 white">
-      <div class="">
-        <div class="text-xl leading-10 col l2 m3 s5 offset-l3 offset-m2 offset-s1 text-zinc-400">
-          <p>Especies</p>
+    <div id="test-swipe-1" class="col s12 m12 l12 white" [ngClass]="{'mt-7': !(isLoading$|async)}">
+      <div class="col l12 m12 s12">
+        <div class="text-xl leading-10 col l3 m3 s5 offset-l3 offset-m2 offset-s1 text-zinc-500">
+          <p>Especie</p>
           <p>Altura</p>
           <p>Peso</p>
         </div>
-        <div class="text-xl leading-10 col l2 m3 s5 offset-l3 offset-m2 offset-s1 font-medium">
+        <div class="text-xl leading-10 col l3 m3 s5 offset-l2 offset-m2 offset-s1 font-medium">
           <p>{{(pokemon$|async)!.species.name}}</p>
           <p>{{(pokemon$|async)!.height / 10}} m.</p>
           <p>{{(pokemon$|async)!.weight / 10}} kg</p>
         </div>
+      </div>
 
-        <p class="text-xl leading-10 col l4 m6 s10 offset-l3 offset-m2 offset-s1 text-zinc-400"><b>Habilidades</b></p>
-        <div>
-          <div class="text-xl leading-10 col l4 m3 s5 offset-l3 offset-m2 offset-s1 text-zinc-400">
-            <ul *ngFor="let item of (pokemon$|async)?.abilities">
-              <li><p>{{item.ability.name}}</p></li>
-            </ul>
-          </div>
-          <div class="text-xl leading-10 col l2 m3 s5 offset-l1 offset-m2 offset-s1 font-medium">
-            <ul *ngFor="let item of (pokemon$|async)?.abilities">
-              <li><p *ngIf="item.is_hidden; then thenTrue else elseFalse"></p></li>
-              <ng-template #thenTrue>Oculto</ng-template>
-              <ng-template #elseFalse>No oculto</ng-template>
-            </ul>
-          </div>
+      <div class="col l12 m12 s12">
+        <p class="text-xl leading-10 col l6 m6 s10 offset-l3 offset-m2 offset-s1 text-zinc-500"><b>Habilidades</b></p>
+        <div class="text-xl leading-10 col l2 m3 s5 offset-l3 offset-m2 offset-s1 text-zinc-500">
+          <ul *ngFor="let item of (pokemon$|async)?.abilities">
+            <li>
+              <p>{{item.ability.name}}</p>
+            </li>
+          </ul>
+        </div>
+        <div class="text-xl leading-10 col l2 m3 s5 offset-l3 offset-m2 offset-s1 font-medium">
+          <ul *ngFor="let item of (pokemon$|async)?.abilities">
+            <li>
+              <p *ngIf="item.is_hidden; then thenTrue else elseFalse"></p>
+            </li>
+            <ng-template #thenTrue>Oculto</ng-template>
+            <ng-template #elseFalse>No oculto</ng-template>
+          </ul>
         </div>
       </div>
     </div>
 
     <!-- La experiencia base es una cantidad fija de puntos de experiencia entre 20, como mínimo, y 255 (608 a partir de la quinta generación), como máximo -->
     <!-- Contenido del tab "Estados base"-->
-    <div id="test-swipe-2" class="col s12 white">
-      <div class="">
-        <div class="text-xl leading-10 col l2 m3 s4 offset-l3 offset-m2 offset-s1 text-zinc-400">
-          <p>Experiencia base</p>
+    <div id="test-swipe-2" class="col s12 white" [ngClass]="{'mt-7': !(isLoading$|async)}">
+      <div class="text-xl leading-10 col l2 m3 s4 offset-l3 offset-m2 offset-s1 text-zinc-500">
+        <p>Experiencia base</p>
+      </div>
+      <div class="text-xl leading-10 col l3 m4 s6 offset-l2 offset-m1 font-medium flex">
+        <p class="w-12">{{(pokemon$|async)!.base_experience}}</p>
+        <div class="progress pt-2 self-end blue lighten-4">
+          <div class="determinate rounded-full blue" style='width:{{(pokemon$|async)!.base_experience * .164473684}}%'>
+          </div> <!-- Calculo del xp base -->
         </div>
-        <div class="text-xl leading-10 col l3 m4 s6 offset-l2 offset-m1 font-medium flex">
-          <p class="w-12">{{(pokemon$|async)!.base_experience}}</p>
-          <div class="progress pt-2 self-end blue lighten-4">
-            <div class="determinate rounded-full blue" style='width:{{(pokemon$|async)!.base_experience * .164473684}}%'></div> <!-- Calculo del xp base -->
-          </div>
-        </div>
+      </div>
 
-        <!-- Stats, estats base 255 max -->
-        <p class="text-xl leading-10 col l4 m6 s10 offset-l3 offset-m2 offset-s1 text-zinc-400"><b>Stats</b></p>
-        <div>
-          <div class="text-xl leading-10 col l4 m3 s4 offset-l3 offset-m2 offset-s1 text-zinc-400">
-            <ul *ngFor="let item of (pokemon$|async)?.stats">
-              <li><p>{{item.stat.name}}</p></li>
-            </ul>
-          </div>
+      <!-- Stats, estats base 255 max -->
+      <div>
+        <p class="text-xl leading-10 col l4 m6 s10 offset-l3 offset-m2 offset-s1 text-zinc-500"><b>Stats</b></p>
+        <div class="text-xl leading-10 col l4 m3 s4 offset-l3 offset-m2 offset-s1 text-zinc-500">
           <ul *ngFor="let item of (pokemon$|async)?.stats">
-            <li class="text-xl leading-10 col l3 m4 s6  offset-m1 font-medium flex">
-              <p class="w-12">{{item.base_stat}}</p>
-              <div class="progress pt-2 self-end red lighten-5">
-                <div class="determinate rounded-full red" style='width:{{item.base_stat * .392156863}}%'></div> <!-- Calculo del xp base (255) -->
-              </div>
+            <li>
+              <p>{{item.stat.name}}</p>
             </li>
           </ul>
         </div>
-
-
-
-        
-        
-
-
-
-      </div>
-    </div>
-
-   
-
-    
-
-
-    <!-- Contenido del tab "?"-->
-    <div id="test-swipe-3" class="col s12 ">Test 3</div>
-
-    <!-- Cargador -->
-    <div class="col l8 m10 s10 offset-l2 offset-m1 offset-s1" id="preloader" [ngClass]="{'hide': !(isLoading$|async)}">
-      <div class="progress">
-        <div class="indeterminate"></div>
+        <ul *ngFor="let item of (pokemon$|async)?.stats">
+          <li class="text-xl leading-10 col l3 m4 s6  offset-m1 font-medium flex">
+            <p class="w-12">{{item.base_stat}}</p>
+            <div class="progress pt-2 self-end grey lighten-2">
+              <div class="determinate rounded-full {{getPokemonTypeBackground((pokemonColorType|async)![0])}}"
+                style='width:{{item.base_stat * .392156863}}%'></div>
+              <!-- Calculo del xp base (255) -->
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
   </div>

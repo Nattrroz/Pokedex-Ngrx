@@ -21,7 +21,7 @@ export class AppComponent {
   /**
    * Variable contador
    */
-  counter: number = 10;
+  counter!: number;
 
   /**
    * Objeto para quitar la suscripción
@@ -32,9 +32,9 @@ export class AppComponent {
    * Constructor del componente.
    * @param store Almacén de estados de la aplicación.
    */
-  constructor(private store: Store<CounterModuleState>){
+  constructor(private store: Store<CounterModuleState>) {
     this.store.select(x => x.counter)
-    .subscribe( counter => this.counter = counter);
+      .subscribe(counter => this.counter = counter);
   }
 
   /**
@@ -48,16 +48,15 @@ export class AppComponent {
   /**
    * Incrementa el contador
    */
-  increaseCounter(){
+  increaseCounter() {
     this.store.dispatch(new IncreaseCounterAction);
     this.store.dispatch(new GetPokemonAction(this.counter));
-
   }
 
   /**
    * Decrementa el contador
    */
-  decreaseCounter(){
+  decreaseCounter() {
     this.store.dispatch(new DecreaseCounterAction);
     this.store.dispatch(new GetPokemonAction(this.counter));
   }
