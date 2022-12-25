@@ -7,11 +7,11 @@ export interface PokemonStats{
      */
     base_stat: number;
     /**
-     * Esfuerzo
+     * Esfuerzo.
      */
     effort: number;
     /**
-     * Stat
+     * Stat.
      */
     stat: Stat;
 }

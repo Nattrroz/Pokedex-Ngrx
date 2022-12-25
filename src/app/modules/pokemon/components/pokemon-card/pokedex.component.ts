@@ -1,10 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 import { GetPokemonType, GetPokemonTypeBackground, GetPokemonTypeIcon, PokemonTypes } from 'src/app/core/models/enums/pokemon-types.enum';
 import { DreamWorldSprite } from 'src/app/core/models/pokemon/pokemon-sprites';
-import { PokemonStats } from 'src/app/core/models/pokemon/pokemon-stats';
-import { Pokemon, Types } from 'src/app/core/models/pokemon/pokemon.model';
+import { Pokemon } from 'src/app/core/models/pokemon/pokemon.model';
 import { AppState } from 'src/app/store/app-state/app-state.model';
 import { GetPokemonAction } from 'src/app/store/pokemon/actions/get-pokemon.action';
 
@@ -40,14 +39,14 @@ export class PokedexComponent {
   public isLoading$: Observable<boolean>;
 
   /**
-   * Tipos de pokemones.
+   * Tipos de pokemones del enum.
   */
   public pokemonTypes = Object.values(PokemonTypes).filter(
     (value) => typeof value === "string"
   );
 
   /**
-   * Observable para obtener el background del tipo de pokemon.
+   * Observable para obtener el color con respecto al tipo de pokemon.
    */
   public pokemonColorType!: Observable<string[]>
 
@@ -87,7 +86,7 @@ export class PokedexComponent {
 
   /**
    * Obtiene el icono del tipo de pokemón del enumerable.
-   * @param pokemonType Typo de pokemón.
+   * @param type Typo de pokemón.
    */
   getPokemonTypeIcon(type: string) {
     let pokemonTypeIcon: { text?: string; }[] = [];
@@ -102,8 +101,8 @@ export class PokedexComponent {
   }
 
   /**
-   * Obtiene el background de acuerdo al tipo de pokemón del enumerable.
-   * @param pokemonType Tipo de pokemón.
+   * Obtiene el color o background de acuerdo al tipo de pokemón del enumerable.
+   * @param type Tipo de pokemón.
    */
   getPokemonTypeBackground(type: string) {
     let pokemonColorType: { text?: string; }[] = [];

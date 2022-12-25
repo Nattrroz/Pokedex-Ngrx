@@ -31,7 +31,7 @@ export function counterReducer (state: number = 1, action: CounterActions){
         case ActionsConstants.DivideCounterAction:
             return state / action.payload;
         case ActionsConstants.ResetCounterAction:
-            return state = 0;
+            return state = 1;
         default:
             return state;
     }

@@ -1,4 +1,3 @@
-import { EntityState } from "@ngrx/entity";
 import { Pokemon } from "src/app/core/models/pokemon/pokemon.model";
 
 /**

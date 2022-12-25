@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { DecreaseCounterAction } from './store/counter/actions/decrease-counter.action';
 import { IncreaseCounterAction } from './store/counter/actions/increase-counter.action';
+import { ResetCounterAction } from './store/counter/actions/reset-counter.action';
 import { CounterModuleState } from './store/counter/app-state/module-state.model';
 import { GetPokemonAction } from './store/pokemon/actions/get-pokemon.action';
 
@@ -58,6 +59,14 @@ export class AppComponent {
    */
   decreaseCounter() {
     this.store.dispatch(new DecreaseCounterAction);
+    this.store.dispatch(new GetPokemonAction(this.counter));
+  }
+
+  /**
+   * Reinicia el contador
+   */
+  resetCounter() {
+    this.store.dispatch(new ResetCounterAction);
     this.store.dispatch(new GetPokemonAction(this.counter));
   }
 }

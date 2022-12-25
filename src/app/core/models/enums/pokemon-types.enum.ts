@@ -1,5 +1,5 @@
 /**
- * Enum para los tipos de pokemones
+ * Enum para los tipos de pokemones.
  */
 export enum PokemonTypes{
     normal = "normal",
@@ -25,7 +25,7 @@ export enum PokemonTypes{
 }
 
 /**
- * Obtiene el string del tipo de pokemón
+ * Obtiene el string del tipo de pokemón en español.
  */
 export const GetPokemonType = new Map<string, string>([
     [PokemonTypes.normal, "Normal"],
@@ -52,7 +52,7 @@ export const GetPokemonType = new Map<string, string>([
 
 
 /**
- * Obtiene el icono del tipo de pokemón
+ * Obtiene el icono del tipo de pokemón.
  */
 export const GetPokemonTypeIcon = new Map<string, string>([
     [PokemonTypes.normal, "/assets/img/pokemon-types/normal.png"],
@@ -78,7 +78,7 @@ export const GetPokemonTypeIcon = new Map<string, string>([
 ]);
 
 /**
- * Obtiene el background del tipo de pokemón
+ * Obtiene el background o color dependiendo del tipo de pokemón.
  */
 export const GetPokemonTypeBackground = new Map<string, string>([
     [PokemonTypes.normal, "grey darken-1"],
