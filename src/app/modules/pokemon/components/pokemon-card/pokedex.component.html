@@ -11,7 +11,7 @@
     <!-- Tipos de pokemón -->
     <ul class="sm:flex h-20">
       <li class="left-align content-start" *ngFor="let item of (pokemon$|async)?.types">
-        <div class="chip white-text drop-shadow-2xl" *ngFor="let type of getPokemonType(item.type.name)">{{type.text}}
+        <div style="background-color: #ffffff30" class="chip white-text drop-shadow-2xl" *ngFor="let type of getPokemonType(item.type.name)">{{type.text}}
           <img *ngFor="let icon of getPokemonTypeIcon(item.type.name)" src="{{icon.text}}" alt="Tipo de pokemón">
         </div>
       </li>
@@ -28,8 +28,8 @@
   <div class="row rounded-t-3xl white">
     <div class="h-10"></div>
     <ul id="tabs-swipe-demo" class="tabs font-sans">
-      <li class="tab col s6 l4 offset-l2"><a href="#test-swipe-1" class="cyan-text"><b>Información</b></a></li>
-      <li class="tab col s6 l4"><a href="#test-swipe-2" class="cyan-text"><b>Estados base</b></a></li>
+      <li class="tab col s6 l3 offset-l3"><a href="#test-swipe-1" class="cyan-text"><b>Información</b></a></li>
+      <li class="tab col s6 l3"><a href="#test-swipe-2" class="cyan-text"><b>Estados base</b></a></li>
     </ul>
 
     <!-- Cargador -->
@@ -38,21 +38,21 @@
     </div>
 
     <!-- Contenido del tab "Información"-->
-    <div id="test-swipe-1" class="col s12 m12 l12 white" [ngClass]="{'mt-7': !(isLoading$|async)}">
-      <div class="col l12 m12 s12">
+    <div id="test-swipe-1" class="col s12 l8 offset-l2 white" [ngClass]="{'mt-7': !(isLoading$|async)}">
+      <div class="col l12 m10 s12 offset-m1">
         <div class="text-xl leading-10 col l3 m3 s5 offset-l3 offset-m2 offset-s1 text-zinc-500">
           <p>Especie</p>
           <p>Altura</p>
           <p>Peso</p>
         </div>
-        <div class="text-xl leading-10 col l3 m3 s5 offset-l2 offset-m2 offset-s1 font-medium">
+        <div class="text-xl leading-10 col l3 m3 s4 offset-l2 offset-m3 offset-s2 font-medium">
           <p>{{(pokemon$|async)!.species.name}}</p>
           <p>{{(pokemon$|async)!.height / 10}} m.</p>
           <p>{{(pokemon$|async)!.weight / 10}} kg</p>
         </div>
       </div>
 
-      <div class="col l12 m12 s12">
+      <div class="col l12 m10 s12 offset-m1">
         <p class="text-xl leading-10 col l6 m6 s10 offset-l3 offset-m2 offset-s1 text-zinc-500"><b>Habilidades</b></p>
         <div class="text-xl leading-10 col l2 m3 s5 offset-l3 offset-m2 offset-s1 text-zinc-500">
           <ul *ngFor="let item of (pokemon$|async)?.abilities">
@@ -61,7 +61,7 @@
             </li>
           </ul>
         </div>
-        <div class="text-xl leading-10 col l2 m3 s5 offset-l3 offset-m2 offset-s1 font-medium">
+        <div class="text-xl leading-10 col l2 m3 s4 offset-l3 offset-m3 offset-s2 font-medium">
           <ul *ngFor="let item of (pokemon$|async)?.abilities">
             <li>
               <p *ngIf="item.is_hidden; then thenTrue else elseFalse"></p>
@@ -75,7 +75,7 @@
 
     <!-- La experiencia base es una cantidad fija de puntos de experiencia entre 20, como mínimo, y 255 (608 a partir de la quinta generación), como máximo -->
     <!-- Contenido del tab "Estados base"-->
-    <div id="test-swipe-2" class="col s12 white" [ngClass]="{'mt-7': !(isLoading$|async)}">
+    <div id="test-swipe-2" class="col s12 l8 offset-l2 white" [ngClass]="{'mt-7': !(isLoading$|async)}">
       <div class="text-xl leading-10 col l2 m3 s4 offset-l3 offset-m2 offset-s1 text-zinc-500">
         <p>Experiencia base</p>
       </div>
