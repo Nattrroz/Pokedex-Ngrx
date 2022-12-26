@@ -1,0 +1,1 @@
+{"ast":null,"code":"/**\r\n * Constantes para el ambiente de producción.\r\n */\nexport const environment = {\n  /**\r\n   * Identifica el tipo de ambiente\r\n   */\n  production: true,\n  /**\r\n   * Url base del API de pokemón.\r\n   */\n  POKEMON_API: 'https://pokeapi.co/api/v2/'\n};","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}

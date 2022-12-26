@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { InjectionToken } from \"@angular/core\";\n/**\r\n * Constante que identifica la interfaz para la inyección de dependencias.\r\n */\nexport const POKEMON_ENDPOINT_SERVICE = new InjectionToken('POKEMON_ENDPOINT_SERVICE');","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}
