@@ -1,9 +1,9 @@
 # PokedexApp
-
 Proyecto realizado con [Angular CLI](https://github.com/angular/angular-cli) version 15.0.4.
 Actuaizar su version de angular en caso de que no se ejecute.
 
-## Redux
+## Ngrx
+* States
 * Store
 * Actions
 * Reducers
