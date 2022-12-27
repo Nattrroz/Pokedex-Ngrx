@@ -1,4 +1,5 @@
 <div class="relative row">
+  <p class="absolute right-align w-full pr-1 white-text opacity-50">v.1.0.1</p>
   <!-- Botón para reiniciar el contador -->
   <div class="absolute flex mt-2 ml-12 sm:mt-8 sm:ml-16 z-20">
     <a (click)="resetCounter()"
@@ -16,6 +17,36 @@
       class="cursor-pointer mr-2 transparent opacity-90 transition ease-in-out delay-150 text-neutral-300 hover:-translate-y-1 hover:scale-110 hover:text-white duration-300">
       <i class="medium material-icons right select-none">navigate_next</i></a>
   </div>
+
+  <!-- Botón del tap -->
+  <div class="fixed-action-btn">
+    <a id="info" class="btn-floating btn-medium red accent-2 btn tooltipped" data-position="left" data-tooltip="About" onclick="$('.tap-target').tapTarget('open')">
+      <i class="large material-icons">info</i>
+    </a>
+  </div>
+
+  <!-- Contenedor del tap -->
+  <div class="tap-target red accent-2" data-target="info">
+    <div class="tap-target-content white-text">
+      <div class="right-align">
+        <h5>About</h5>
+        <ul><span><b>Frameworks</b></span>
+          <li><p>Angular CLI & Core 15.0.4</p></li>
+          <li><p>Ngrx 15.0.0</p></li>
+          <li><p>Materialize CSS 1.0.0</p></li>
+          <li><p>Tailwind CSS 3.2.4</p></li>
+        </ul>
+        <p>Endpoint: <a class="white-text underline" href="https://pokeapi.co/">PokéAPI</a></p>
+      </div>
+      <div class="">
+        <p>Developed by: <span><b>Didier Hobak</b></span></p>
+        <p><a class="white-text underline" href="https://www.linkedin.com/in/didierhobak/">Linkedin</a></p>
+        <p><a class="white-text underline" href="https://github.com/Nattrroz/">GitHub</a></p>
+        <p>Copyright © {{currentYear}}, All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+
   <!-- Pokedex component -->
   <div>
     <app-pokedex></app-pokedex>

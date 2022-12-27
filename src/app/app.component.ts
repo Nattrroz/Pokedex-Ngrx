@@ -28,6 +28,10 @@ export class AppComponent {
    * Objeto para quitar la suscripción
    */
   public unsubscribe: Subject<void> = new Subject<void>();
+  /**
+   * Indica el año actual
+   */
+  currentYear: number = new Date().getFullYear();
 
   /**
    * Constructor del componente.
