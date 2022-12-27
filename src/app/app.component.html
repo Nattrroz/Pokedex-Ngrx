@@ -7,7 +7,7 @@
       <i class="small material-icons select-none">keyboard_backspace</i></a>
   </div>
   <!-- Botón para decrementar y aumentar el contador -->
-  <div class="absolute flex w-screen h-96 md:h-96 md:justify-around justify-between items-end z-20 sm:mt-14 md:mt-28  mt-14">
+  <div class="absolute flex w-screen h-80 sm:h-72 md:justify-around justify-between items-end z-20 sm:mt-14 md:mt-28  mt-14">
     <a (click)="decreaseCounter()"
       class="cursor-pointer ml-2 transparent opacity-90 transition ease-in-out delay-150 text-neutral-300 hover:-translate-y-1 hover:scale-110 hover:text-white duration-300"
       [ngClass]="{'btn-flat disabled': counter == 1}">
